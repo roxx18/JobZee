@@ -12,7 +12,7 @@ import fileUpload from "express-fileupload";
 const app = express();
 config({ path: "./config/config.env" });
 app.use(cors({
-    origin: 'https://jobzee-1-m6o5.onrender.com/', // Allow requests from this origin
+    origin: 'https://jobzee-1-m6o5.onrender.com', // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   }));
 
