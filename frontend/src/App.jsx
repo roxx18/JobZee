@@ -24,7 +24,9 @@ const App = () => {
       try {
         const response = await axios.get(
           "https://jobzee-n7eb.onrender.com/api/v1/user/getuser",
-          
+          {
+            withCredentials:true,
+          }
         );
         setUser(response.data.user);
         setIsAuthorized(true);
