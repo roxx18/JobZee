@@ -10,12 +10,12 @@ export const sendToken = (user, statusCode, res, message) => {
     //     httpOnly: true, // Ensures the cookie is not accessible via JavaScript on the client-side
     // };
 
-    res.cookie("token", token, {
+    const options= {
         httpOnly: true,
         secure: true,
         sameSite: "none", // Allow cross-origin cookies
         maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      };
       
 
     // Set the token in the cookie and send the response
