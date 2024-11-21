@@ -12,7 +12,7 @@ import fileUpload from "express-fileupload";
 const app = express();
 config({ path: "./config/config.env" });
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from this origin
+    origin: '*', // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   }));
 
