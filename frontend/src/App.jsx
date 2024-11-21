@@ -6,7 +6,7 @@ import Login from "./components/Auth/Login";
 import Rejister from "./components/Auth/Rejister";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
-import Navbar from "./components/Layout/Navbar";
+import Navbar from "./components/Layout/NavBar";
 import Footer from "./components/Layout/Footer";
 import Home from "./components/Home/Home";
 import Jobs from "./components/Job/Jobs";
@@ -24,9 +24,7 @@ const App = () => {
       try {
         const response = await axios.get(
           "https://jobzee-n7eb.onrender.com/api/v1/user/getuser",
-          {
-            withCredentials:true,
-          }
+          
         );
         setUser(response.data.user);
         setIsAuthorized(true);
