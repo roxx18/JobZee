@@ -10,7 +10,7 @@ const JobDetails = () => {
   const{isAuthorized,user}=useContext(Context);
 
   useEffect(()=>{
-axios.get(`http://localhost:4000/api/v1/job/${id}`,{
+axios.get(`https://jobzee-n7eb.onrender.com/api/v1/job/${id}`,{
   withCredentials:true,
 }).then(res=>{
   setJob(res.data.job);
