@@ -45,20 +45,17 @@ sendToken(user,200,res,"User logged in successfully!")
 });
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
-  res
-    .status(200)
-    .cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0), // Explicitly set the expiration date to the past
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      sameSite: "lax", // Prevent CSRF in most cases
-    })
-    .json({
-      success: true,
-      message: "User logged out successfully",
-    });
-});
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
 
+  res.status(200).json({
+    success: true,
+    message: "User logged out successfully",
+  });
+});
 
 
 

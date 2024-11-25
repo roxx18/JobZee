@@ -14,13 +14,20 @@ const Navbar = () => {
     try {
       const response = await axios.get(
         "https://jobzee-n7eb.onrender.com/api/v1/user/logout",
-        {
-          withCredentials: true, // Ensures cookies are sent with the request
-        }
+        { withCredentials: true } // Ensures cookies are included
       );
-      toast.success(response.data.message); // Notify success
-      setIsAuthorized(false); // Update authorization state
-      navigateTo("/login"); // Redirect to login page
+  
+      // Clear any client-side stored tokens or session info
+      document.cookie = "token=; Max-Age=0; path=/"; // Clear cookie
+      localStorage.removeItem("authToken");
+      sessionStorage.removeItem("authSession");
+  
+      // Notify success and reset state
+      toast.success(response.data.message);
+      setIsAuthorized(false);
+  
+      // Redirect to login
+      navigateTo("/login");
     } catch (error) {
       // Handle potential errors gracefully
       const errorMessage =
@@ -28,9 +35,10 @@ const Navbar = () => {
           ? error.response.data.message
           : "Something went wrong!";
       toast.error(errorMessage);
-      setIsAuthorized(true); // Ensure authorization state remains intact
+      console.error(error); // Log error for debugging
     }
   };
+  
 
   return (
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
