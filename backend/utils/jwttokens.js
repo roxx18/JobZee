@@ -13,7 +13,7 @@ export const sendToken = (user, statusCode, res, message) => {
     const options= {
         httpOnly: true,
         secure: true,
-        sameSite: "none", // Allow cross-origin cookies
+        sameSite: "lax", // Allow cross-origin cookies
         maxAge: 7 * 24 * 60 * 60 * 1000,
       };
       
