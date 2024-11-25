@@ -15,14 +15,20 @@ const Navbar = () => {
       const response = await axios.get(
         "https://jobzee-n7eb.onrender.com/api/v1/user/logout",
         {
-          withCredentials: true,
+          withCredentials: true, // Ensures cookies are sent with the request
         }
       );
-      toast.success(response.data.message);
-      setIsAuthorized(false);
-      navigateTo("/login");
+      toast.success(response.data.message); // Notify success
+      setIsAuthorized(false); // Update authorization state
+      navigateTo("/login"); // Redirect to login page
     } catch (error) {
-      toast.error(error.response.data.message), setIsAuthorized(true);
+      // Handle potential errors gracefully
+      const errorMessage =
+        error.response && error.response.data
+          ? error.response.data.message
+          : "Something went wrong!";
+      toast.error(errorMessage);
+      setIsAuthorized(true); // Ensure authorization state remains intact
     }
   };
 
